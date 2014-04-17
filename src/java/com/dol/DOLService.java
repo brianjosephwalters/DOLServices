@@ -28,10 +28,20 @@ public class DOLService {
         impl = new DOLServiceImpl();
     }
     
+    @WebMethod(operationName = "getAllSkills")
+    public List<Skill> getAllSkills() {
+        return impl.getAllSkills();
+    }
+    
+    @WebMethod(operationName = "getAllOccupations")
+    public List<Occupation> getAllOccupations() {
+        return impl.getAllOccupations();
+    }
+    
     @WebMethod(operationName = "addSkillToPosition")
     public void addSkillToPosition( @WebParam(name = "occupationID") Integer occupationID, 
                                     @WebParam(name = "skillID") Integer skillID) {
-        impl.addSkillToPosition(occupationID, skillID);
+        impl.addSkillToOccupation(occupationID, skillID);
     }
     
     @WebMethod(operationName = "dropSkillFromOccupation")
@@ -42,7 +52,7 @@ public class DOLService {
     
     @WebMethod(operationName = "getSkillsFromPosition")
     public List<Skill> getSkillsFromPosition( @WebParam(name = "occupationID") Integer occupationID) {
-        return impl.getSkillsFromPosition(occupationID);
+        return impl.getSkillsFromOccupation(occupationID);
     }
     
     @WebMethod(operationName = "getOccupationFromSkill")

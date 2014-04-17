@@ -20,13 +20,11 @@ public class Skill implements Serializable {
 	
 	
 	public Skill(Integer skillID, String name, String description, String type, Integer level) {
-		
 		this.skillID = skillID;
 		this.name = name;
 		this.description = description;
 		this.type = type;
 		this.level = level;
-
 	}
 	
 	
