@@ -165,7 +165,7 @@
   </binding>
   <service name="DOLService">
     <port name="DOLServicePort" binding="tns:DOLServicePortBinding">
-      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+      <soap:address location="http://localhost/DOLServices"/>
     </port>
   </service>
 </definitions>
