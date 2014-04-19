@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.dol;
 
 import com.dol.business.DOLServiceImpl;
@@ -17,7 +11,6 @@ import javax.jws.WebService;
 
 /**
  *
- * @author bjw
  */
 @WebService(serviceName = "DOLService")
 public class DOLService {
