@@ -3,7 +3,6 @@ package com.dol;
 import com.dol.business.DOLServiceImpl;
 import com.dol.models.Occupation;
 import com.dol.models.Skill;
-import java.util.LinkedList;
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
