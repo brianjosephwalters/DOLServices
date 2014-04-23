@@ -30,8 +30,8 @@ public class DOLService {
         return impl.getAllOccupations();
     }
     
-    @WebMethod(operationName = "addSkillToPosition")
-    public void addSkillToPosition( @WebParam(name = "occupationID") Integer occupationID, 
+    @WebMethod(operationName = "addSkillToOccupation")
+    public void addSkillToOccupation( @WebParam(name = "occupationID") Integer occupationID, 
                                     @WebParam(name = "skillID") Integer skillID) {
         impl.addSkillToOccupation(occupationID, skillID);
     }
@@ -42,8 +42,8 @@ public class DOLService {
         return impl.dropSkillFromOccupation(skillID, occupationID);
     }
     
-    @WebMethod(operationName = "getSkillsFromPosition")
-    public List<Skill> getSkillsFromPosition( @WebParam(name = "occupationID") Integer occupationID) {
+    @WebMethod(operationName = "getSkillsFromOccupation")
+    public List<Skill> getSkillsFromOccupation( @WebParam(name = "occupationID") Integer occupationID) {
         return impl.getSkillsFromOccupation(occupationID);
     }
     
@@ -61,6 +61,4 @@ public class DOLService {
     public List<Occupation> getOccupationsByType( @WebParam(name = "skillType") String skillType) {
         return impl.getOccupationsByType(skillType);
     }
-    
-    
 }

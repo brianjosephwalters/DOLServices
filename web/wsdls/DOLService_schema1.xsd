@@ -9,13 +9,13 @@
 
   <xs:element name="dropSkillFromOccupationResponse" nillable="true" type="tns:dropSkillFromOccupationResponse"/>
 
-  <xs:element name="getAllOccupations" type="tns:getAllOccupations"/>
+  <xs:element name="getAllOccupations" nillable="true" type="tns:getAllOccupations"/>
 
-  <xs:element name="getAllOccupationsResponse" type="tns:getAllOccupationsResponse"/>
+  <xs:element name="getAllOccupationsResponse" nillable="true" type="tns:getAllOccupationsResponse"/>
 
-  <xs:element name="getAllSkills" type="tns:getAllSkills"/>
+  <xs:element name="getAllSkills" nillable="true" type="tns:getAllSkills"/>
 
-  <xs:element name="getAllSkillsResponse" type="tns:getAllSkillsResponse"/>
+  <xs:element name="getAllSkillsResponse" nillable="true" type="tns:getAllSkillsResponse"/>
 
   <xs:element name="getOccupationFromSkill" nillable="true" type="tns:getOccupationsFromSkill"/>
 
@@ -106,7 +106,7 @@
 
   <xs:complexType name="getAllSkillsResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:skill" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:skill" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -140,7 +140,7 @@
 
   <xs:complexType name="getAllOccupationsResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:occupation" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:occupation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
