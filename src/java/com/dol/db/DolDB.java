@@ -10,116 +10,116 @@ import java.util.List;
 
 public class DolDB {
 	
-	public DolDB() {
-	}
-	
-	//connection
-	
-	public Connection dbConnection() {
-    	Connection conn = null;
-    	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    public DolDB() {
+    }
 
-	    String driver = "oracle.jdbc.driver.OracleDriver";
-	    String userName = "dol"; 
-	    String password = "dol";
-	    try {
-	    	  Class.forName(driver).newInstance();
-	    	  conn = DriverManager.getConnection(url,userName, password);
-	    	  } catch (ClassNotFoundException | 
-                           InstantiationException | 
-                           IllegalAccessException | 
-                           SQLException e) {
-	    		  e.printStackTrace();
-	    	  }
-	    	  return conn;
-	}
+    //connection
+
+    public Connection dbConnection() {
+    Connection conn = null;
+    String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+        String driver = "oracle.jdbc.driver.OracleDriver";
+        String userName = "dol"; 
+        String password = "dol";
+        try {
+              Class.forName(driver).newInstance();
+              conn = DriverManager.getConnection(url,userName, password);
+              } catch (ClassNotFoundException | 
+                       InstantiationException | 
+                       IllegalAccessException | 
+                       SQLException e) {
+                      e.printStackTrace();
+              }
+              return conn;
+    }
 	
 	
-	//create
-	public Integer createSkill(Skill skill) throws SQLException {
-		Integer id = 0;
-		Connection conn = this.dbConnection();
-		String returnCourseId = "";
-	  	  try {
-	  		  Statement stmt = conn.createStatement();
-	  		  stmt.executeUpdate("insert into skill (skill_name, skill_description, skill_level, skill_type, creation_date)" +
-	  		  		" values " +
-	  		  		"("+ skill.getName() +", '"+ skill.getDescription() +"', '"+ skill.getLevel() +"', '"+ skill.getType() +"', to_date(SYDATE,'mm/dd/yyyy')");
-	  		  
-	  		  //The one just added would have the last course_id because the course_id in the table are an auto increment
-	  		  String courseIdQuery = "select max(training_id) from job_training";
-	  		  ResultSet rs = stmt.executeQuery(courseIdQuery);
-	  		  while(rs.next()){
-	  		  returnCourseId = rs.getString(1);
-	  		  }
-	  		  //stmt.executeBatch();
-	  		  conn.close();
-	  	  } catch (SQLException e) {
-	  		  e.printStackTrace(); 
-	  	  }
-	  	  
-	  	  id = Integer.parseInt(returnCourseId);
-		return id;
-	}
-	
-	
-	public Integer createSkill(String name, 
-                                   String description, 
-                                   String level, 
-                                   String type) throws SQLException {
-		Integer id = 0;
-		Connection conn = this.dbConnection();
-		String returnCourseId = "";
-	  	  try {
-	  		  Statement stmt = conn.createStatement();
-	  		  stmt.executeUpdate("insert into skill (skill_name, skill_description, skill_level, skill_type, creation_date)" +
-	  		  		" values " +
-	  		  		"("+ name +", '"+ description +"', '"+ level +"', '"+ type +"', to_date(SYDATE,'mm/dd/yyyy')");
-	  		  
-	  		  //The one just added would have the last course_id because the course_id in the table are an auto increment
-	  		  String courseIdQuery = "select max(training_id) from job_training";
-	  		  ResultSet rs = stmt.executeQuery(courseIdQuery);
-	  		  while(rs.next()){
-	  		  returnCourseId = rs.getString(1);
-	  		  }
-	  		  //stmt.executeBatch();
-	  		  conn.close();
-	  	  } catch (SQLException e) {
-	  		  e.printStackTrace(); 
-	  	  }
-	  	  
-	  	  id = Integer.parseInt(returnCourseId);
-		return id;
-	}
-	
-	
-	public Integer createOccupation(Occupation occupation) throws SQLException {
+    //create
+    public Integer createSkill(Skill skill) throws SQLException {
             Integer id = 0;
             Connection conn = this.dbConnection();
             String returnCourseId = "";
-            try {
-                Statement stmt = conn.createStatement();
-                stmt.executeUpdate("insert into occupation (occupation_title, occupation_description, occupation_type, creation_date)" +
-                                   " values " +
-                                   "("+ occupation.getTitle() + ", '" + occupation.getDescription() +"', '"+ occupation.getType() +"', to_date(SYDATE,'mm/dd/yyyy')");
+              try {
+                      Statement stmt = conn.createStatement();
+                      stmt.executeUpdate("insert into skill (skill_name, skill_description, skill_level, skill_type, creation_date)" +
+                                    " values " +
+                                    "("+ skill.getName() +", '"+ skill.getDescription() +"', '"+ skill.getLevel() +"', '"+ skill.getType() +"', to_date(SYDATE,'mm/dd/yyyy')");
 
-                //The one just added would have the last course_id because the course_id in the table are an auto increment
-                String courseIdQuery = "select max(training_id) from job_training";
-                ResultSet rs = stmt.executeQuery(courseIdQuery);
-                while(rs.next()){
-                    returnCourseId = rs.getString(1);
-                }
-                //stmt.executeBatch();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace(); 
-            }
+                      //The one just added would have the last course_id because the course_id in the table are an auto increment
+                      String courseIdQuery = "select max(training_id) from job_training";
+                      ResultSet rs = stmt.executeQuery(courseIdQuery);
+                      while(rs.next()){
+                      returnCourseId = rs.getString(1);
+                      }
+                      //stmt.executeBatch();
+                      conn.close();
+              } catch (SQLException e) {
+                      e.printStackTrace(); 
+              }
 
-            id = Integer.parseInt(returnCourseId);
+              id = Integer.parseInt(returnCourseId);
             return id;
-	}
-	
-	
+    }
+
+
+    public Integer createSkill(String name, 
+                               String description, 
+                               String level, 
+                               String type) throws SQLException {
+            Integer id = 0;
+            Connection conn = this.dbConnection();
+            String returnCourseId = "";
+              try {
+                      Statement stmt = conn.createStatement();
+                      stmt.executeUpdate("insert into skill (skill_name, skill_description, skill_level, skill_type, creation_date)" +
+                                    " values " +
+                                    "("+ name +", '"+ description +"', '"+ level +"', '"+ type +"', to_date(SYDATE,'mm/dd/yyyy')");
+
+                      //The one just added would have the last course_id because the course_id in the table are an auto increment
+                      String courseIdQuery = "select max(training_id) from job_training";
+                      ResultSet rs = stmt.executeQuery(courseIdQuery);
+                      while(rs.next()){
+                      returnCourseId = rs.getString(1);
+                      }
+                      //stmt.executeBatch();
+                      conn.close();
+              } catch (SQLException e) {
+                      e.printStackTrace(); 
+              }
+
+              id = Integer.parseInt(returnCourseId);
+            return id;
+    }
+
+
+    public Integer createOccupation(Occupation occupation) throws SQLException {
+        Integer id = 0;
+        Connection conn = this.dbConnection();
+        String returnCourseId = "";
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("insert into occupation (occupation_title, occupation_description, occupation_type, creation_date)" +
+                               " values " +
+                               "("+ occupation.getTitle() + ", '" + occupation.getDescription() +"', '"+ occupation.getType() +"', to_date(SYDATE,'mm/dd/yyyy')");
+
+            //The one just added would have the last course_id because the course_id in the table are an auto increment
+            String courseIdQuery = "select max(training_id) from job_training";
+            ResultSet rs = stmt.executeQuery(courseIdQuery);
+            while(rs.next()){
+                returnCourseId = rs.getString(1);
+            }
+            //stmt.executeBatch();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        id = Integer.parseInt(returnCourseId);
+        return id;
+    }
+
+
     public int createOccupation(String title, String desc, String type) throws SQLException {
         Connection conn = this.dbConnection();
         String returnPositionId = "";
@@ -143,8 +143,7 @@ public class DolDB {
         return Integer.parseInt(returnPositionId);
       }
 	
-	
-	
+		
     public void createOccupationSkill(Integer occupationID, Integer skillID) throws SQLException{
     	Connection conn = this.dbConnection();
     	try {
@@ -186,6 +185,27 @@ public class DolDB {
         finally {
             connection.close();
         }
+        return occupation;
+    }
+    
+    public Occupation getOccupation(Integer occupationID) 
+            throws SQLException {
+        Connection connection = this.dbConnection();
+        String query  = "SELECT occupation_id, occupation_title, occupation_description, occupation_type, creation_date "
+                + "FROM occupation "
+                + "WHERE occupation_id = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, occupationID);
+        ResultSet results = stmt.executeQuery(query);
+        results.next();
+        
+        Occupation occupation = new Occupation();
+        occupation.setOccupationID(occupationID);
+        occupation.setTitle(results.getString("occupation_title"));
+        occupation.setDescription(results.getString("occupation_description"));
+        occupation.setType(results.getString("occupation_type"));
+        
         return occupation;
     }
     
@@ -235,6 +255,27 @@ public class DolDB {
             connection.close();
         }
     	return skill;
+    }
+    
+    public Skill getSkill(Integer skillID) 
+            throws SQLException {
+        Connection connection = this.dbConnection();
+        String query  = "SELECT skill_id, skill_name, skill_description, skill_type, skill_level "
+                    + " FROM skill "
+                    + " WHERE skill_id = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, skillID);
+        ResultSet results = stmt.executeQuery(query);
+        results.next();
+        
+        Skill skill = new Skill();
+        skill.setSkillID(skillID);
+        skill.setName(results.getString("skill_name"));
+        skill.setDescription(results.getString("skill_description"));
+        skill.setType(results.getString("skill_type"));
+        skill.setLevel(results.getInt("skill_level"));
+        return skill;
     }
     
     public List<Skill> getAllSkills() throws SQLException {

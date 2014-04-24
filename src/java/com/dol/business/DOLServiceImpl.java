@@ -24,6 +24,16 @@ public class DOLServiceImpl {
             return occupations;
         }
         
+        public Occupation getOccupation(Integer occupationID) {
+            Occupation occupation = null;
+            try {
+                occupation = db.getOccupation(occupationID);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return occupation;
+        }
+        
         public List<Skill> getAllSkills() {
             List<Skill> skills = null;
             try {
@@ -32,6 +42,16 @@ public class DOLServiceImpl {
                 e.printStackTrace();
             }
             return skills;
+        }
+        
+        public Skill getSkill(Integer skillID) {
+            Skill skill = null;
+            try {
+                skill = db.getSkill(skillID);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return skill;
         }
 	
 	public void addSkillToOccupation( Integer occupationID, Integer skillID)  {
@@ -98,4 +118,5 @@ public class DOLServiceImpl {
             }	
             return occupations;
 	}
+        
 }

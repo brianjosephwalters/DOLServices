@@ -8,9 +8,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-/**
- *
- */
 @WebService(serviceName = "DOLService")
 public class DOLService {
 
@@ -25,9 +22,19 @@ public class DOLService {
         return impl.getAllSkills();
     }
     
+    @WebMethod(operationName = "getSkill")
+    public Skill getSkill(@WebParam(name="skillID") Integer skillID) {
+        return impl.getSkill(skillID);
+    }
+    
     @WebMethod(operationName = "getAllOccupations")
     public List<Occupation> getAllOccupations() {
         return impl.getAllOccupations();
+    }
+    
+    @WebMethod(operationName = "getOccupation")
+    public Occupation getOccupation(@WebParam(name="occupationID") Integer occupationID) {
+        return impl.getOccupation(occupationID);
     }
     
     @WebMethod(operationName = "addSkillToOccupation")
@@ -61,4 +68,5 @@ public class DOLService {
     public List<Occupation> getOccupationsByType( @WebParam(name = "skillType") String skillType) {
         return impl.getOccupationsByType(skillType);
     }
+
 }
