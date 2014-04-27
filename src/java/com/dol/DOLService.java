@@ -23,7 +23,7 @@ public class DOLService {
     }
     
     @WebMethod(operationName = "getSkill")
-    public Skill getSkill(@WebParam(name="skillID") Integer skillID) {
+    public Skill getSkill(@WebParam(name="skillID") String skillID) {
         return impl.getSkill(skillID);
     }
     
@@ -33,7 +33,7 @@ public class DOLService {
     }
     
     @WebMethod(operationName = "getOccupation")
-    public Occupation getOccupation(@WebParam(name="occupationID") Integer occupationID) {
+    public Occupation getOccupation(@WebParam(name="occupationID") String occupationID) {
         return impl.getOccupation(occupationID);
     }
     

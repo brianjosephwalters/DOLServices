@@ -24,7 +24,7 @@ public class DOLServiceImpl {
             return occupations;
         }
         
-        public Occupation getOccupation(Integer occupationID) {
+        public Occupation getOccupation(String occupationID) {
             Occupation occupation = null;
             try {
                 occupation = db.getOccupation(occupationID);
@@ -44,7 +44,7 @@ public class DOLServiceImpl {
             return skills;
         }
         
-        public Skill getSkill(Integer skillID) {
+        public Skill getSkill(String skillID) {
             Skill skill = null;
             try {
                 skill = db.getSkill(skillID);

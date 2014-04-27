@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" targetNamespace="http://dol.com/" xmlns:tns="http://dol.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="addSkillToPosition" nillable="true" type="tns:addSkillToPosition"/>
+  <xs:element name="addSkillToOccupation" type="tns:addSkillToOccupation"/>
 
-  <xs:element name="addSkillToPositionResponse" nillable="true" type="tns:addSkillToPositionResponse"/>
+  <xs:element name="addSkillToOccupationResponse" type="tns:addSkillToOccupationResponse"/>
 
   <xs:element name="dropSkillFromOccupation" nillable="true" type="tns:dropSkillFromOccupation"/>
 
@@ -17,21 +17,29 @@
 
   <xs:element name="getAllSkillsResponse" nillable="true" type="tns:getAllSkillsResponse"/>
 
+  <xs:element name="getOccupation" type="tns:getOccupation"/>
+
   <xs:element name="getOccupationFromSkill" nillable="true" type="tns:getOccupationsFromSkill"/>
 
   <xs:element name="getOccupationFromSkillResponse" nillable="true" type="tns:getOccupationsFromSkillResponse"/>
+
+  <xs:element name="getOccupationResponse" type="tns:getOccupationResponse"/>
 
   <xs:element name="getOccupationsByType" nillable="true" type="tns:getOccupationsByType"/>
 
   <xs:element name="getOccupationsByTypeResponse" nillable="true" type="tns:getOccupationsByTypeResponse"/>
 
+  <xs:element name="getSkill" type="tns:getSkill"/>
+
+  <xs:element name="getSkillResponse" type="tns:getSkillResponse"/>
+
   <xs:element name="getSkillsByType" nillable="true" type="tns:getSkillsByType"/>
 
   <xs:element name="getSkillsByTypeResponse" nillable="true" type="tns:getSkillsByTypeResponse"/>
 
-  <xs:element name="getSkillsFromPosition" nillable="true" type="tns:getSkillsFromPosition"/>
+  <xs:element name="getSkillsFromOccupation" type="tns:getSkillsFromOccupation"/>
 
-  <xs:element name="getSkillsFromPositionResponse" nillable="true" type="tns:getSkillsFromPositionResponse"/>
+  <xs:element name="getSkillsFromOccupationResponse" type="tns:getSkillsFromOccupationResponse"/>
 
   <xs:complexType name="getOccupationsByType">
     <xs:sequence>
@@ -48,7 +56,7 @@
   <xs:complexType name="occupation">
     <xs:sequence>
       <xs:element name="description" type="xs:string" minOccurs="0"/>
-      <xs:element name="occupationID" type="xs:int" minOccurs="0"/>
+      <xs:element name="occupationID" type="xs:string" minOccurs="0"/>
       <xs:element name="title" type="xs:string" minOccurs="0"/>
       <xs:element name="type" type="xs:string" minOccurs="0"/>
     </xs:sequence>
@@ -71,7 +79,7 @@
       <xs:element name="description" type="xs:string" minOccurs="0"/>
       <xs:element name="level" type="xs:int" minOccurs="0"/>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
-      <xs:element name="skillID" type="xs:int" minOccurs="0"/>
+      <xs:element name="skillID" type="xs:string" minOccurs="0"/>
       <xs:element name="type" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
@@ -89,15 +97,16 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="addSkillToPosition">
+  <xs:complexType name="getOccupation">
     <xs:sequence>
-      <xs:element name="occupationID" type="xs:int" minOccurs="0"/>
-      <xs:element name="skillID" type="xs:int" minOccurs="0"/>
+      <xs:element name="occupationID" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="addSkillToPositionResponse">
-    <xs:sequence/>
+  <xs:complexType name="getOccupationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:occupation" minOccurs="0"/>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="getAllSkills">
@@ -110,15 +119,15 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="getSkillsFromPosition">
+  <xs:complexType name="getSkill">
     <xs:sequence>
-      <xs:element name="occupationID" type="xs:int" minOccurs="0"/>
+      <xs:element name="skillID" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="getSkillsFromPositionResponse">
+  <xs:complexType name="getSkillResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:skill" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:skill" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -142,6 +151,29 @@
     <xs:sequence>
       <xs:element name="return" type="tns:occupation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSkillsFromOccupation">
+    <xs:sequence>
+      <xs:element name="occupationID" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSkillsFromOccupationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:skill" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addSkillToOccupation">
+    <xs:sequence>
+      <xs:element name="occupationID" type="xs:int" minOccurs="0"/>
+      <xs:element name="skillID" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addSkillToOccupationResponse">
+    <xs:sequence/>
   </xs:complexType>
 </xs:schema>
 

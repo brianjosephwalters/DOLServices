@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Skill implements Serializable {
 	private static long uid = 11111;
-	private Integer skillID;
+	private String skillID;
 	private String name;
 	private String description;
 	private String type;
@@ -19,7 +19,7 @@ public class Skill implements Serializable {
 	}
 	
 	
-	public Skill(Integer skillID, String name, String description, String type, Integer level) {
+	public Skill(String skillID, String name, String description, String type, Integer level) {
 		this.skillID = skillID;
 		this.name = name;
 		this.description = description;
@@ -28,7 +28,7 @@ public class Skill implements Serializable {
 	}
 	
 	
-	public Skill(Integer skillID, String name, String description, String type, Integer level, Date creationDate, Date endDate) {
+	public Skill(String skillID, String name, String description, String type, Integer level, Date creationDate, Date endDate) {
 		this.skillID = skillID;
 		this.name = name;
 		this.description = description;
@@ -38,11 +38,11 @@ public class Skill implements Serializable {
 		this.endDate = endDate;
 	}
 	
-	public Integer getSkillID() {
+	public String getSkillID() {
 		return this.skillID;
 	}
 	
-	public void setSkillID(Integer id) {
+	public void setSkillID(String id) {
 		this.skillID = id;
 	}
 	

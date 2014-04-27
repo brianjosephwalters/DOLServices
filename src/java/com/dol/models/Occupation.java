@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Occupation implements Serializable {
 
-	private Integer occupationID;
+	private String occupationID;
 	private String title;
 	private String description;
 	private String type;
@@ -17,7 +17,7 @@ public class Occupation implements Serializable {
 	}
 	
 	
-	public Occupation(Integer occupationID, String title, String description, String type) {
+	public Occupation(String occupationID, String title, String description, String type) {
 		this.occupationID = occupationID;
 		this.title = title;
 		this.description = description;
@@ -25,7 +25,7 @@ public class Occupation implements Serializable {
 
 	}
 	
-	public Occupation(Integer occupationID, String title, String description, String type, Date creationDate, Date endDate) {
+	public Occupation(String occupationID, String title, String description, String type, Date creationDate, Date endDate) {
 		this.occupationID = occupationID;
 		this.title = title;
 		this.description = description;
@@ -34,12 +34,12 @@ public class Occupation implements Serializable {
 		this.endDate = endDate;
 	}
 	
-	public Integer getOccupationID() {
+	public String getOccupationID() {
 		return this.occupationID;
 	}
 	
-	public void setOccupationID(Integer newID){
-		this.occupationID = newID;
+	public void setOccupationID(String occupationID){
+		this.occupationID = occupationID;
 	}
 	
 	public String getTitle(){

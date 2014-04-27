@@ -17,11 +17,11 @@ public class DolDB {
 
     public Connection dbConnection() {
     Connection conn = null;
-    String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    String url = "jdbc:oracle:thin:@dbsvcs.cs.uno.edu:1521:orcl";
 
         String driver = "oracle.jdbc.driver.OracleDriver";
-        String userName = "dol"; 
-        String password = "dol";
+        String userName = "bwalters"; 
+        String password = "TZZQGkMQ";
         try {
               Class.forName(driver).newInstance();
               conn = DriverManager.getConnection(url,userName, password);
@@ -161,34 +161,11 @@ public class DolDB {
     //read
     /*
      * Get occupation
-     * @param Title
+     * @param occupationID
      * @return the occupation that holds the parameter id.
      */
     
-    public Occupation getOccupation(String title) throws SQLException{
-    	Occupation occupation = new Occupation();
-        Connection connection = this.dbConnection();
-        try {
-            Statement statement = connection.createStatement();
-            String query = "SELECT occupation_id, occupation_title, occupation_description, occupation_type, creation_date FROM occupation WHERE occupation_title = '" + title + "' AND end_date is null" ;
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-            	occupation.setOccupationID(rs.getInt(1));
-                occupation.setTitle(rs.getString(2));
-                occupation.setDescription(rs.getString(3));
-                occupation.setType(rs.getString(4));      
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            connection.close();
-        }
-        return occupation;
-    }
-    
-    public Occupation getOccupation(Integer occupationID) 
+    public Occupation getOccupation(String occupationID) 
             throws SQLException {
         Connection connection = this.dbConnection();
         String query  = "SELECT occupation_id, occupation_title, occupation_description, occupation_type, creation_date "
@@ -196,7 +173,7 @@ public class DolDB {
                 + "WHERE occupation_id = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1, occupationID);
+        stmt.setString(1, occupationID);
         ResultSet results = stmt.executeQuery(query);
         results.next();
         
@@ -218,7 +195,7 @@ public class DolDB {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 Occupation occupation = new Occupation();
-                occupation.setOccupationID(rs.getInt(1));
+                occupation.setOccupationID(rs.getString(1));
                 occupation.setTitle(rs.getString(2));
                 occupation.setDescription(rs.getString(3));
                 occupation.setType(rs.getString(4));
@@ -233,31 +210,7 @@ public class DolDB {
         return list;
     }
     
-    public Skill getSkill(String skillName) throws SQLException{
-    	Skill skill = new Skill();
-    	Connection connection = this.dbConnection();
-    	try {
-            Statement statement = connection.createStatement();
-            String query  = "SELECT skill_id, skill_name, skill_description, skill_type, skill_level FROM skill WHERE skill_name = '" + skillName + "' AND end_date is null";
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-                skill.setSkillID(rs.getInt(1));
-                skill.setName(rs.getString(2));
-                skill.setDescription(rs.getString(3));
-                skill.setType(rs.getString(4));
-                skill.setLevel(rs.getInt(5));
-            }
-    	}
-    	catch (SQLException e){
-            e.printStackTrace();
-    	}
-    	finally {
-            connection.close();
-        }
-    	return skill;
-    }
-    
-    public Skill getSkill(Integer skillID) 
+    public Skill getSkill(String skillID) 
             throws SQLException {
         Connection connection = this.dbConnection();
         String query  = "SELECT skill_id, skill_name, skill_description, skill_type, skill_level "
@@ -265,7 +218,7 @@ public class DolDB {
                     + " WHERE skill_id = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1, skillID);
+        stmt.setString(1, skillID);
         ResultSet results = stmt.executeQuery(query);
         results.next();
         
@@ -287,7 +240,7 @@ public class DolDB {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 Skill skill = new Skill();
-                skill.setSkillID(rs.getInt(1));
+                skill.setSkillID(rs.getString(1));
                 skill.setName(rs.getString(2));
                 skill.setDescription(rs.getString(3));
                 skill.setType(rs.getString(4));
@@ -310,7 +263,7 @@ public class DolDB {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                Integer id = rs.getInt(1);
+                String id = rs.getString(1);
                 String name = rs.getString(2);
                 String description = rs.getString(3);
                 String type = rs.getString(4);
@@ -335,7 +288,7 @@ public class DolDB {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                Integer id = rs.getInt(1);
+                String id = rs.getString(1);
                 String title = rs.getString(2);
                 String description = rs.getString(3);
                 String type = rs.getString(4);
@@ -360,7 +313,7 @@ public class DolDB {
             String query = "SELECT skill_id, skill_name, skill_description, skill_type, skill_level FROM skill WHERE skill_type = '" + type + "' AND end_date is null";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                Integer id = rs.getInt(1);
+                String id = rs.getString(1);
                 String name = rs.getString(2);
                 String description = rs.getString(3);
                 String skillType = rs.getString(4);
@@ -386,7 +339,7 @@ public class DolDB {
             String query = "SELECT occupation_id, occupation_title, occupation_description, occupation_type FROM occupation WHERE occupation_type = '" + type + "' AND end_date is null";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                    Integer id = rs.getInt(1);
+                    String id = rs.getString(1);
                     String title = rs.getString(2);
                     String description = rs.getString(3);
                     String oType = rs.getString(4);

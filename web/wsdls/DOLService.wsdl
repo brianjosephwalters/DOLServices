@@ -13,11 +13,11 @@
   <message name="getAllOccupationsResponse">
     <part name="parameters" element="tns:getAllOccupationsResponse"/>
   </message>
-  <message name="addSkillToPosition">
-    <part name="parameters" element="tns:addSkillToPosition"/>
+  <message name="addSkillToOccupation">
+    <part name="parameters" element="tns:addSkillToOccupation"/>
   </message>
-  <message name="addSkillToPositionResponse">
-    <part name="parameters" element="tns:addSkillToPositionResponse"/>
+  <message name="addSkillToOccupationResponse">
+    <part name="parameters" element="tns:addSkillToOccupationResponse"/>
   </message>
   <message name="dropSkillFromOccupation">
     <part name="parameters" element="tns:dropSkillFromOccupation"/>
@@ -25,11 +25,11 @@
   <message name="dropSkillFromOccupationResponse">
     <part name="parameters" element="tns:dropSkillFromOccupationResponse"/>
   </message>
-  <message name="getSkillsFromPosition">
-    <part name="parameters" element="tns:getSkillsFromPosition"/>
+  <message name="getSkillsFromOccupation">
+    <part name="parameters" element="tns:getSkillsFromOccupation"/>
   </message>
-  <message name="getSkillsFromPositionResponse">
-    <part name="parameters" element="tns:getSkillsFromPositionResponse"/>
+  <message name="getSkillsFromOccupationResponse">
+    <part name="parameters" element="tns:getSkillsFromOccupationResponse"/>
   </message>
   <message name="getOccupationFromSkill">
     <part name="parameters" element="tns:getOccupationFromSkill"/>
@@ -49,6 +49,18 @@
   <message name="getOccupationsByTypeResponse">
     <part name="parameters" element="tns:getOccupationsByTypeResponse"/>
   </message>
+  <message name="getSkill">
+    <part name="parameters" element="tns:getSkill"/>
+  </message>
+  <message name="getSkillResponse">
+    <part name="parameters" element="tns:getSkillResponse"/>
+  </message>
+  <message name="getOccupation">
+    <part name="parameters" element="tns:getOccupation"/>
+  </message>
+  <message name="getOccupationResponse">
+    <part name="parameters" element="tns:getOccupationResponse"/>
+  </message>
   <message name="getAllSkills">
     <part name="parameters" element="tns:getAllSkills"/>
   </message>
@@ -60,17 +72,17 @@
       <input wsam:Action="http://dol.com/DOLService/getAllOccupationsRequest" message="tns:getAllOccupations"/>
       <output wsam:Action="http://dol.com/DOLService/getAllOccupationsResponse" message="tns:getAllOccupationsResponse"/>
     </operation>
-    <operation name="addSkillToPosition">
-      <input wsam:Action="http://dol.com/DOLService/addSkillToPositionRequest" message="tns:addSkillToPosition"/>
-      <output wsam:Action="http://dol.com/DOLService/addSkillToPositionResponse" message="tns:addSkillToPositionResponse"/>
+    <operation name="addSkillToOccupation">
+      <input wsam:Action="http://dol.com/DOLService/addSkillToOccupationRequest" message="tns:addSkillToOccupation"/>
+      <output wsam:Action="http://dol.com/DOLService/addSkillToOccupationResponse" message="tns:addSkillToOccupationResponse"/>
     </operation>
     <operation name="dropSkillFromOccupation">
       <input wsam:Action="http://dol.com/DOLService/dropSkillFromOccupationRequest" message="tns:dropSkillFromOccupation"/>
       <output wsam:Action="http://dol.com/DOLService/dropSkillFromOccupationResponse" message="tns:dropSkillFromOccupationResponse"/>
     </operation>
-    <operation name="getSkillsFromPosition">
-      <input wsam:Action="http://dol.com/DOLService/getSkillsFromPositionRequest" message="tns:getSkillsFromPosition"/>
-      <output wsam:Action="http://dol.com/DOLService/getSkillsFromPositionResponse" message="tns:getSkillsFromPositionResponse"/>
+    <operation name="getSkillsFromOccupation">
+      <input wsam:Action="http://dol.com/DOLService/getSkillsFromOccupationRequest" message="tns:getSkillsFromOccupation"/>
+      <output wsam:Action="http://dol.com/DOLService/getSkillsFromOccupationResponse" message="tns:getSkillsFromOccupationResponse"/>
     </operation>
     <operation name="getOccupationFromSkill">
       <input wsam:Action="http://dol.com/DOLService/getOccupationFromSkillRequest" message="tns:getOccupationFromSkill"/>
@@ -83,6 +95,14 @@
     <operation name="getOccupationsByType">
       <input wsam:Action="http://dol.com/DOLService/getOccupationsByTypeRequest" message="tns:getOccupationsByType"/>
       <output wsam:Action="http://dol.com/DOLService/getOccupationsByTypeResponse" message="tns:getOccupationsByTypeResponse"/>
+    </operation>
+    <operation name="getSkill">
+      <input wsam:Action="http://dol.com/DOLService/getSkillRequest" message="tns:getSkill"/>
+      <output wsam:Action="http://dol.com/DOLService/getSkillResponse" message="tns:getSkillResponse"/>
+    </operation>
+    <operation name="getOccupation">
+      <input wsam:Action="http://dol.com/DOLService/getOccupationRequest" message="tns:getOccupation"/>
+      <output wsam:Action="http://dol.com/DOLService/getOccupationResponse" message="tns:getOccupationResponse"/>
     </operation>
     <operation name="getAllSkills">
       <input wsam:Action="http://dol.com/DOLService/getAllSkillsRequest" message="tns:getAllSkills"/>
@@ -101,7 +121,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="addSkillToPosition">
+    <operation name="addSkillToOccupation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -119,7 +139,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="getSkillsFromPosition">
+    <operation name="getSkillsFromOccupation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -147,6 +167,24 @@
       </output>
     </operation>
     <operation name="getOccupationsByType">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getSkill">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getOccupation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -167,7 +205,7 @@
   </binding>
   <service name="DOLService">
     <port name="DOLServicePort" binding="tns:DOLServicePortBinding">
-      <soap:address location="http://localhost:8080/DOLServices"/>
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
     </port>
   </service>
 </definitions>
