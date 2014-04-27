@@ -1,6 +1,8 @@
 package com.dol.business;
 
 import com.dol.db.DolDB;
+import com.dol.exceptions.NonexistentOccupationException;
+import com.dol.exceptions.NonexistentSkillException;
 import com.dol.models.Occupation;
 import com.dol.models.Skill;
 import java.sql.SQLException;
@@ -24,12 +26,16 @@ public class DOLServiceImpl {
             return occupations;
         }
         
-        public Occupation getOccupation(String occupationID) {
+        public Occupation getOccupation(String occupationID) 
+                throws NonexistentOccupationException {
             Occupation occupation = null;
             try {
                 occupation = db.getOccupation(occupationID);
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+            if (occupation == null) {
+                throw new NonexistentOccupationException(occupationID);
             }
             return occupation;
         }
@@ -44,12 +50,16 @@ public class DOLServiceImpl {
             return skills;
         }
         
-        public Skill getSkill(String skillID) {
+        public Skill getSkill(String skillID) 
+                throws NonexistentSkillException {
             Skill skill = null;
             try {
                 skill = db.getSkill(skillID);
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+            if (skill == null) {
+                throw new NonexistentSkillException(skillID);
             }
             return skill;
         }
