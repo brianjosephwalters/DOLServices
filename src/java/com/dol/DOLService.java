@@ -55,42 +55,49 @@ public class DOLService {
         return occupation;
     }
     
+    /*
     @WebMethod(operationName = "addSkillToOccupation")
     public void addSkillToOccupation( 
             @WebParam(name = "occupationID") Integer occupationID,                         
             @WebParam(name = "skillID") Integer skillID) {
         impl.addSkillToOccupation(occupationID, skillID);
     }
-    
+    */
+    /*
     @WebMethod(operationName = "dropSkillFromOccupation")
     public boolean dropSkillFromOccupation( 
             @WebParam(name = "skillID") Integer skillID,
             @WebParam(name = "occupationID") Integer occupationID) {
         return impl.dropSkillFromOccupation(skillID, occupationID);
     }
+    */
     
     @WebMethod(operationName = "getSkillsFromOccupation")
     public List<Skill> getSkillsFromOccupation( 
-            @WebParam(name = "occupationID") Integer occupationID) {
-        return impl.getSkillsFromOccupation(occupationID);
+            @WebParam(name = "occupationID") String occupationID) {
+        return impl.getSkillsForOccupation(occupationID);
     }
     
     @WebMethod(operationName = "getOccupationFromSkill")
     public List<Occupation> getOccupationsFromSkill( 
-            @WebParam(name = "skillID") Integer skillID) {
-        return impl.getOccupationsFromSkill(skillID);
+            @WebParam(name = "skillID") String skillID) {
+        return impl.getOccupationsForSkill(skillID);
     }
     
+    /*
     @WebMethod(operationName = "getSkillsByType")
     public List<Skill> getSkillsByType( 
             @WebParam(name = "skillType") String skillType) {
         return impl.getSkillsByType(skillType);
     }
+    */
     
+    /*
     @WebMethod(operationName = "getOccupationsByType")
     public List<Occupation> getOccupationsByType( 
             @WebParam(name = "skillType") String skillType) {
         return impl.getOccupationsByType(skillType);
     }
+    */
 
 }

@@ -1,6 +1,7 @@
 package com.dol.business;
 
 import com.dol.db.DolDB;
+import com.dol.db.DolDB2;
 import com.dol.exceptions.NonexistentOccupationException;
 import com.dol.exceptions.NonexistentSkillException;
 import com.dol.models.Occupation;
@@ -10,10 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DOLServiceImpl {
-	private DolDB db;
+	private DolDB2 db;
 	
 	public DOLServiceImpl() {
-            db = new DolDB();
+            db = new DolDB2();
         }
         
         public List<Occupation> getAllOccupations() {
@@ -64,6 +65,7 @@ public class DOLServiceImpl {
             return skill;
         }
 	
+        /*
 	public void addSkillToOccupation( Integer occupationID, Integer skillID)  {
             try {
                 db.createOccupationSkill(occupationID, skillID);
@@ -71,8 +73,9 @@ public class DOLServiceImpl {
             catch (SQLException e) {
                 e.printStackTrace();
             }
-	}
+	}*/
 	
+        /*
 	public boolean dropSkillFromOccupation(Integer skillID, Integer occupationID){
 		boolean result = false;
 		try {
@@ -83,23 +86,24 @@ public class DOLServiceImpl {
 		}
 		return result;
 	}
+        */
 	
-	public List<Skill> getSkillsFromOccupation(Integer occupationID) {
-		List<Skill> skillList = new LinkedList<Skill>();
-		try {	
-			
-			skillList = db.getOccupationSkills(occupationID);
-		}
-		catch (SQLException sqlE) {
-			sqlE.printStackTrace();
-		}
-			return skillList;
+	public List<Skill> getSkillsForOccupation(String occupationID) {
+            List<Skill> skillList = new LinkedList<Skill>();
+            try {	
+
+                    skillList = db.getAllSkillsForOccupation(occupationID);
+            }
+            catch (SQLException sqlE) {
+                    sqlE.printStackTrace();
+            }
+            return skillList;
 	}
 	
-	public List<Occupation> getOccupationsFromSkill(Integer skillID) {
+	public List<Occupation> getOccupationsForSkill(String skillID) {
             List<Occupation> occupations = new LinkedList<Occupation>();
             try {
-                occupations = db.getOccupationsFromSkill(skillID);
+                occupations = db.getOccupationsForSkill(skillID);
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -107,6 +111,7 @@ public class DOLServiceImpl {
             return occupations;
 	}
 	
+        /*
 	public List<Skill> getSkillsByType(String type)  {
             List<Skill> skillList = new LinkedList<Skill>();
             try {
@@ -117,7 +122,9 @@ public class DOLServiceImpl {
             }	
             return skillList;
 	}
+        */
         
+        /*
 	public List<Occupation> getOccupationsByType(String type)  {
             List<Occupation> occupations = new LinkedList<Occupation>();
             try {
@@ -128,5 +135,6 @@ public class DOLServiceImpl {
             }	
             return occupations;
 	}
+        */
         
 }

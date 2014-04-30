@@ -174,7 +174,7 @@ public class DolDB {
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, occupationID);
-        ResultSet results = stmt.executeQuery(query);
+        ResultSet results = stmt.executeQuery();
         results.next();
         
         Occupation occupation = new Occupation();
@@ -219,7 +219,7 @@ public class DolDB {
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, skillID);
-        ResultSet results = stmt.executeQuery(query);
+        ResultSet results = stmt.executeQuery();
         results.next();
         
         Skill skill = new Skill();
