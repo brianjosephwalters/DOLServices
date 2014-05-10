@@ -83,21 +83,5 @@ public class DOLService {
             @WebParam(name = "skillID") String skillID) {
         return impl.getOccupationsForSkill(skillID);
     }
-    
-    /*
-    @WebMethod(operationName = "getSkillsByType")
-    public List<Skill> getSkillsByType( 
-            @WebParam(name = "skillType") String skillType) {
-        return impl.getSkillsByType(skillType);
-    }
-    */
-    
-    /*
-    @WebMethod(operationName = "getOccupationsByType")
-    public List<Occupation> getOccupationsByType( 
-            @WebParam(name = "skillType") String skillType) {
-        return impl.getOccupationsByType(skillType);
-    }
-    */
 
 }

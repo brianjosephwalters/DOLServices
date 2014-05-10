@@ -136,21 +136,25 @@ public class DolDB2 {
             throws SQLException {
         Connection connection = this.dbConnection();
         List<Skill> list = new ArrayList<Skill>();
-        String query  = "SELECT element_id " +
-                " FROM JH_ABILITIES " +
-                " WHERE onetsoc_code = ? " +
-                " UNION " +
-                " SELECT element_id " +
-                " FROM JH_INTERESTS " +
-                " WHERE onetsoc_code = ? " +
-                " UNION " +
-                " SELECT element_id " +
-                " FROM JH_KNOWLEDGE " +
-                " WHERE onetsoc_code = ? " +
-                " UNION " +
-                " SELECT element_id " +
-                " FROM JH_SKILLS " +
-                " WHERE onetsoc_code = ? ";
+        String query  = 
+                " WITH skill_codes as " +
+                " (SELECT element_id " +
+                "  FROM JH_ABILITIES " +
+                "  WHERE onetsoc_code = ? " +
+                "  UNION " +
+                "  SELECT element_id " +
+                "  FROM JH_INTERESTS " +
+                "  WHERE onetsoc_code = ? " +
+                "  UNION " +
+                "  SELECT element_id " +
+                "  FROM JH_KNOWLEDGE " +
+                "  WHERE onetsoc_code = ? " +
+                "  UNION " +
+                "  SELECT element_id " +
+                "  FROM JH_SKILLS " +
+                "  WHERE onetsoc_code = ? ) " +
+                " SELECT * " +
+                " FROM JH_CONTENT_MODEL_REFERENCE NATURAL JOIN skill_codes";
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, occupationID);
@@ -173,21 +177,25 @@ public class DolDB2 {
             throws SQLException {
         Connection connection = this.dbConnection();
         List<Occupation> list = new ArrayList<Occupation>();
-        String query  = " SELECT onetsoc_code " +
-                        " FROM JH_ABILITIES " +
-                        " WHERE element_id = ? " +
-                        " UNION " +
-                        " SELECT onetsoc_code " +
-                        " FROM JH_INTERESTS " +
-                        " WHERE element_id = ? " +
-                        " UNION " +
-                        " SELECT onetsoc_code " +
-                        " FROM JH_KNOWLEDGE " +
-                        " WHERE element_id = ? " +
-                        " UNION " +
-                        " SELECT onetsoc_code " +
-                        " FROM JH_SKILLS " +
-                        " WHERE element_id = ? ";
+        String query  = " WITH occ_codes as " +
+                        " (SELECT onetsoc_code " +
+                        "  FROM JH_ABILITIES " +
+                        "  WHERE element_id = ? " +
+                        "  UNION " +
+                        "  SELECT onetsoc_code " +
+                        "  FROM JH_INTERESTS " +
+                        "  WHERE element_id = ? " +
+                        "  UNION " +
+                        "  SELECT onetsoc_code " +
+                        "  FROM JH_KNOWLEDGE " +
+                        "  WHERE element_id = ? " +
+                        "  UNION " +
+                        "  SELECT onetsoc_code " +
+                        "  FROM JH_SKILLS " +
+                        "  WHERE element_id = ? )" +
+                        " SELECT * " +
+                        " FROM JH_OCCUPATION_DATA NATURAL JOIN occ_codes ";
+               
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, skillID);
@@ -198,9 +206,9 @@ public class DolDB2 {
         
         while (results.next()) {
                 Occupation occupation = new Occupation();
-                occupation.setOccupationID(results.getString(""));
-                occupation.setTitle(results.getString(""));
-                occupation.setDescription(results.getString(""));
+                occupation.setOccupationID(results.getString("onetsoc_code"));
+                occupation.setTitle(results.getString("title"));
+                occupation.setDescription(results.getString("description"));
                 list.add(occupation);
             }
         return list;
